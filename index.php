@@ -1,5 +1,7 @@
 <?php 
 
+session_start();
+
 // $file = fopen('demo.text','w');
 
 
@@ -31,28 +33,50 @@
 
 
 
+// <img src="" alt="">
+
 
 if( isset($_POST['btn'])){
  
   $target_file = 'uploads/'.basename($_FILES["photo"]["name"]);
 
+  $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+
+  var_dump(pathinfo('/www/htdocs/inc/lib.inc.php',PATHINFO_EXTENSION));
+
+
   if( move_uploaded_file( $_FILES["photo"]["tmp_name"], $target_file ) ){
 
-    echo "ok upload";  
+    echo " E beda tor photo upload hoyice ";  
   } else{
     echo "Sorry hoy nai";
   }
 
 }
 
+
+
+function printFormatted($stirng,$function)
+{
+	return $function($stirng);
+}
+
+$stirng = "slkfjlskfjlksfl'askwfmlkasf";
+
+function sss($s){
+	return $s .'--------------------------- i -------------';
+}
+
+$jsonobj = '{"Peter":35,"Ben":37,"Joe":43}';
+ 
+var_dump(json_decode($jsonobj));
+
+
+// function printFormatted($stirng,$symable){
+// 	return 
+// }
+
+
+
 ?>
 
-
- <img src="uploads/<?php echo basename($_FILES["photo"]["name"])?>" alt="">
-
-<form action="index.php" method="post" enctype="multipart/form-data">
-
-   <input type="file" name="photo" id="">
-   <button type="submit" name="btn">upload</button>
-
-</form>
